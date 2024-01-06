@@ -1,12 +1,59 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ChapterOne from './levels/chapter1';
+import ChapterTwo from './levels/chapter2';
+import { useState } from 'react';
+
+
+
+const Stack = createNativeStackNavigator();
+//if i ned to pass props :<Stack.Screen name="Home">
+ // {(props) => <HomeScreen {...props} extraData={someData} />}
+ // </Stack.Screen>
+ function HomeScreen({navigation}) {
+const [progress, setProgress] = useState(1)
+
+
+
+
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Welcome</Text>
+      <Text>Follow the tale of brave Bruncvik </Text>
+      <Button
+        title="Chapter One"
+        onPress={() => navigation.navigate('one')}
+      />
+       {progress >1 && <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('two')}
+      />}
+    </View>
+  );
+}
+
+
+
 
 export default function App() {
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+         <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      
+      <Stack.Screen name="one" component={ChapterOne} />
+
+      <Stack.Screen name="two" component={ChapterTwo} />
+    </Stack.Navigator>
+
+
+
+    <StatusBar hidden />
+  </NavigationContainer>
   );
 }
 
@@ -17,4 +64,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  header:{
+    fontSize:50,
+    fontFamily:['serif'],
+    fontWeight:"bold",
+
+
+
+  }
 });
