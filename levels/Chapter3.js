@@ -35,7 +35,7 @@ export default function ChapterThree() {
         const sailorsBoat = [];
         const sailorsShore = [];
 
-        //getting data for sailors
+//this loop sorts out where sailors are standing and if theyre on the raft theyll be assigned based on raft position
         for (const key in position.sailors) {
             if (position.sailors[key] === 3) {
                 sailorsBoat.push("sailor")
@@ -44,10 +44,10 @@ export default function ChapterThree() {
             } else if (position.sailors[key] === 2) {
                 raft.position ? sailorsShore.push("sailor") : sailorsBoat.push("soldier")
 
-
+                
             }
         };
-        //getting array of soldiers
+  //this loop does the same for soldiers
         for (const key in position.soldiers) {
             if (position.soldiers[key] === 3) {
                 soldiersBoat.push("soldier")
@@ -61,7 +61,7 @@ export default function ChapterThree() {
         }
         console.log("soldiersboat:", soldiersBoat, "sshore:", soldiersShore, "namorniciBoat:", sailorsBoat, "namorniciShore:", sailorsShore)
 
-
+//these are conditions to loose the game
         if (soldiersBoat.length < sailorsBoat.length && soldiersBoat.length >= 1) {
             console.log(soldiersBoat, sailorsBoat, "vice namorniku na lodi")
             alert("lost");
@@ -82,7 +82,7 @@ export default function ChapterThree() {
                 position: true
             });
         }
-
+//another condition to loose the game (need to check tomorrow if ia can squish them together with ||)
         if (soldiersShore.length < sailorsShore.length && soldiersShore.length >= 1) {
             console.log(soldiersBoat, sailorsBoat, "vicer Namorniku na brehu")
             alert("lost")
@@ -103,6 +103,7 @@ export default function ChapterThree() {
                 position: true
             });
         }
+        //condition of winnig
         if (soldiersBoat.length === 3 && sailorsShore.length ===3) {
             alert("you won")
         }
@@ -112,7 +113,7 @@ export default function ChapterThree() {
     }, [pos, raft.position])
 
 
-    const handleClickPerson = (person, pos, whereAbouts) => {
+    const handleClickPerson = (person, pos, whereAbouts) => {//updates people on the raft and updates positions arrays
         if (raft.people < 2 && raft.position === whereAbouts) {
             setRaft(prevRaft => ({ ...prevRaft, people: prevRaft.people + 1 }));
             setPos(prevPos => ({ ...prevPos, [person]: { ...prevPos[person], [pos]: 2 } }));
@@ -120,7 +121,7 @@ export default function ChapterThree() {
             alert("Only 2 people allowed on the raft");
         }
     };
-    const handleClickPersonRaft = (person, number) => {
+    const handleClickPersonRaft = (person, number) => {//based on raft position it will drop the people of
         if (raft.position) {
             setPos(prevPos => ({ ...prevPos, [person]: { ...prevPos[person], [number]: 1 } }));
             setRaft(prevRaft => ({ ...prevRaft, people: prevRaft.people - 1 }));
@@ -132,13 +133,11 @@ export default function ChapterThree() {
         };
 
     }
-    const clickRaft = () => {
+    const clickRaft = () => {//raft movement
         raft.people >= 1 ? setRaft(prevRaft => ({ ...prevRaft, position: !prevRaft.position })) : alert("boat cant move by itself");
     }
 
 
-
-    //the ship
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>chapter Two</Text>
