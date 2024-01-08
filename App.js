@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ChapterOne from "./levels/Chapter1";
 import ChapterTwo from "./levels/Chapter2"
 import ChapterThree from './levels/Chapter3';
+import ChapterFour from './levels/Chapter4';
 import { useState } from 'react';
 
 
@@ -14,7 +15,7 @@ const Stack = createNativeStackNavigator();
  // {(props) => <HomeScreen {...props} extraData={someData} />}
  // </Stack.Screen>
  function HomeScreen({navigation}) {
-const [progress, setProgress] = useState(3)
+const [progress, setProgress] = useState(4)
 
 
 
@@ -28,12 +29,16 @@ const [progress, setProgress] = useState(3)
         onPress={() => navigation.navigate('one')}
       />
        {progress >1 && <Button
-        title="Go to Details"
+        title="Chapter two"
         onPress={() => navigation.navigate('two')}
       />}
        {progress >2 && <Button
-        title="Go to Details"
+        title="Chapter Three"
         onPress={() => navigation.navigate('three')}
+      />}
+      {progress > 3 && <Button
+        title="Chapter Four"
+        onPress={() => navigation.navigate('four')}
       />}
     </View>
   );
@@ -46,14 +51,17 @@ export default function App() {
 
 
   return (
-    <NavigationContainer>
-         <Stack.Navigator>
+    <NavigationContainer >
+         <Stack.Navigator  screenOptions={{
+    gestureEnabled: false,
+  }}>
         <Stack.Screen name="Home" component={HomeScreen} />
       
       <Stack.Screen name="one" component={ChapterOne} />
 
       <Stack.Screen name="two" component={ChapterTwo} />
       <Stack.Screen name="three" component={ChapterThree} />
+      <Stack.Screen name="four" component={ChapterFour} />
     </Stack.Navigator>
 
 

@@ -5,6 +5,7 @@ export default function ChapterTwo(){
 
 
     return(
+    
         <ChapterTwoGame />
     )
 }
