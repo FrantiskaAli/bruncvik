@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 
 
-export default function ChapterThree() {
+export default function ChapterThreeGame() {
     //I will assigne 3 possible positions,
     //1 - shore,2 - raft, 3- ship
     //i have 3 clickable items on each shore to begin

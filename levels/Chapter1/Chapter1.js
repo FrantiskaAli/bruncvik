@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-export default function ChapterOne() {
+export default function ChapterOneGame() {
 //raising an Army
     const [game, setGame] = useState({
         "1a": false,

@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ChapterOne from "./levels/Chapter1";
-import ChapterTwo from './levels/Chapter2';
-import ChapterThree from './levels/Chapter3'
+import ChapterTwo from "./levels/Chapter2"
+import ChapterThree from './levels/Chapter3';
 import { useState } from 'react';
 
 
