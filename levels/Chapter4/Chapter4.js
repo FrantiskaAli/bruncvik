@@ -20,7 +20,7 @@ export default function ChapterFourGame() {
     return (
 
 <View style={{flex:1}}>
-        {!run && <TouchableOpacity onPress={()=>setRun(true)}><View><Text>Start</Text></View></TouchableOpacity>}
+        {!run && <TouchableOpacity onPress={()=>setRun(true)}><View><Text>Try Again</Text></View></TouchableOpacity>}
         
         
         <GameEngine
@@ -42,7 +42,6 @@ export default function ChapterFourGame() {
             
                     setRun(false);
                     gameEngine.stop()
-                    alert("you win!"); 
                     break;
                 }
               }}
