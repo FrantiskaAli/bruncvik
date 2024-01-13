@@ -5,7 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ChapterOne from "./levels/Chapter1";
 import ChapterTwo from "./levels/Chapter2"
 import ChapterThree from './levels/Chapter3';
-import ChapterFour from './levels/Chapter4';
+import ChapterFour from './levels/Chapter4'
+import ChapterFive from './levels/Chapter5';
 import { useState } from 'react';
 
 
@@ -39,6 +40,9 @@ const [progress, setProgress] = useState(4)
       {progress > 3 && <Button
         title="Chapter Four"
         onPress={() => navigation.navigate('four')}
+      />}{progress > 3 && <Button
+        title="Chapter Five"
+        onPress={() => navigation.navigate('five')}
       />}
     </View>
   );
@@ -62,6 +66,7 @@ export default function App() {
       <Stack.Screen name="two" component={ChapterTwo} />
       <Stack.Screen name="three" component={ChapterThree} />
       <Stack.Screen name="four" component={ChapterFour} />
+      <Stack.Screen name="five" component={ChapterFive} />
     </Stack.Navigator>
 
 
