@@ -7,6 +7,8 @@ import ChapterTwo from "./levels/Chapter2"
 import ChapterThree from './levels/Chapter3';
 import ChapterFour from './levels/Chapter4'
 import ChapterFive from './levels/Chapter5';
+import ChapterSix from './levels/Chapter6';
+import ChapterSeven from './levels/Chapter7';
 import { useState } from 'react';
 
 
@@ -44,6 +46,13 @@ const [progress, setProgress] = useState(4)
         title="Chapter Five"
         onPress={() => navigation.navigate('five')}
       />}
+      {progress > 3 && <Button
+        title="Chapter Six"
+        onPress={() => navigation.navigate('six')}
+      />}{progress > 3 && <Button
+        title="Chapter Seven"
+        onPress={() => navigation.navigate('seven')}
+      />}
     </View>
   );
 }
@@ -55,10 +64,10 @@ export default function App() {
 
 
   return (
-    <NavigationContainer >
+    <NavigationContainer>
          <Stack.Navigator  screenOptions={{
     gestureEnabled: false,
-  }}>
+  }} >
         <Stack.Screen name="Home" component={HomeScreen} />
       
       <Stack.Screen name="one" component={ChapterOne} />
@@ -67,6 +76,9 @@ export default function App() {
       <Stack.Screen name="three" component={ChapterThree} />
       <Stack.Screen name="four" component={ChapterFour} />
       <Stack.Screen name="five" component={ChapterFive} />
+      <Stack.Screen name="six" component={ChapterSix} />
+      <Stack.Screen name="seven" component={ChapterSeven} />
+
     </Stack.Navigator>
 
 
