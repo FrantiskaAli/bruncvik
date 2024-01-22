@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
 
-export default function ChapterOneGame() {
+export default function ChapterOneGame({victory}) {
 //raising an Army
     const [game, setGame] = useState({
         "1a": false,
@@ -21,6 +21,18 @@ export default function ChapterOneGame() {
         "4c": false,
         "4d": false,
     })
+    const [win,setWin] = useState(false)
+
+    useEffect(()=>{
+        const allValuesTrue = Object.values(game).every((value) => value === true);
+
+        if (allValuesTrue) {
+            setWin(true)
+            setTimeout(() => {
+                victory(1,"two")
+              }, 1000);
+        } 
+    },[game])
 
     const logic = (string) => {
         switch (string) {
@@ -78,6 +90,8 @@ export default function ChapterOneGame() {
 const handleClick = (field)=>{
     setGame(prevGame => ({ ...prevGame, [field]: !prevGame[field]}))
     logic(field)
+
+
 }
 
 
@@ -117,6 +131,9 @@ const handleClick = (field)=>{
              
 
             </View>
+            {win && <View style={{position:"absolute", width:"100%",height:"100%",justifyContent:"center",alignItems:"center"}}>
+                <Text style={{backgroundColor:"brown",color:"yellow",fontFamily:"serif", fontSize:50, fontWeight:700}}>Army gathered!</Text>
+                </View>}
         </View>
     );
 }
