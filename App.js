@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView ,Dimensions} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, ImageBackground } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ChapterOne from "./levels/Chapter1";
@@ -12,100 +12,82 @@ import ChapterSeven from './levels/Chapter7';
 import ChapterEight from './levels/Chapter8';
 import ChapterNine from './levels/Chapter9';
 import ChapterTen from './levels/Chapter10';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 
 
-const screenWidth= Dimensions.get("screen").width
+const screenWidth = Dimensions.get("screen").width
 
 const Stack = createNativeStackNavigator();
 //if i ned to pass props :<Stack.Screen name="Home">
 // {(props) => <HomeScreen {...props} extraData={someData} />}
 // </Stack.Screen>
 function HomeScreen({ navigation }) {
-  const [progress, setProgress] = useState(1)
+  const [progress, setProgress] = useState(10)
 
-
-  const finishChapter = (chapterNo, nextSlide) => {
-    if (chapterNo === progress) {
-      setProgress((prevProgress) => {
-        const newProgress = prevProgress + 1;
-        console.log(newProgress);
-      });
-    }
-    navigation.navigate(nextSlide);
-  };
-
-  useEffect(() => {
-    navigation.setOptions({
-      params: { finishChapter },
-    });
-  }, [navigation, finishChapter]);
-
-  // ... other code
 
 
 
   return (
-    <View style={styles.container}>
-      <View style={{flex:2,alignItems: 'center',justifyContent:"center"}}>
-      <Text style={{fontSize:50,fontFamily:"serif", fontWeight:"900",color:"#fad233" , textShadowColor: 'brown',textShadowRadius: 1,textShadowOffset: { width: 4,height: 4},}}>Bruncvik</Text>
-      <Text style={{fontFamily:"serif",fontSize:24, paddingHorizontal:100}}>Brave hero of Czech Legends... </Text>
+    <ImageBackground source={require("./assets/mainBG.jpg")} resizeMode={"cover"} style={styles.container}>
+      <View style={{ flex: 2, alignItems: 'center', justifyContent: "center" }}>
+        <Text style={{ fontSize: 50, fontFamily: "serif", fontWeight: "900", color: "#fad233", textShadowColor: 'brown', textShadowRadius: 1, textShadowOffset: { width: 4, height: 4 }, }}>Bruncvik</Text>
+        <Text style={{ fontFamily: "serif", fontSize: 24, paddingHorizontal: 100 }}>Brave hero of Czech Legends... </Text>
       </View>
-<ScrollView style={{flex:1,width:screenWidth}}>
-      <TouchableOpacity  style={styles.buttons}
-        onPress={() => navigation.navigate('one',{finishChapter})}
-      >
-        <Text style={styles.buttonText}>Chapter One</Text>
-      </TouchableOpacity>
-      {progress > 1 && <TouchableOpacity style={styles.buttons}
-        onPress={() => navigation.navigate('two')}
-      >
-        <Text style={styles.buttonText}>Chapter Two</Text>
-      </TouchableOpacity>}
+      <ScrollView style={{ flex: 1, width: screenWidth }}>
+        <TouchableOpacity style={styles.buttons}
+          onPress={() => navigation.navigate('one')}
+        >
+          <Text style={styles.buttonText}>Chapter One</Text>
+        </TouchableOpacity>
+        {progress > 1 && <TouchableOpacity style={styles.buttons}
+          onPress={() => navigation.navigate('two')}
+        >
+          <Text style={styles.buttonText}>Chapter Two</Text>
+        </TouchableOpacity>}
 
-      {progress >= 2 && <TouchableOpacity style={styles.buttons}
-        onPress={() => navigation.navigate('three')}
-      >
-        <Text style={styles.buttonText}>Chapter Three</Text>
-      </TouchableOpacity>}
-      {progress > 3 && <TouchableOpacity style={styles.buttons}
-        onPress={() => navigation.navigate('four')}
-      >
-        <Text style={styles.buttonText}>Chapter Four</Text>
-      </TouchableOpacity>}
-      {progress > 3 && <TouchableOpacity style={styles.buttons}
-        onPress={() => navigation.navigate('five')}
-      >
-        <Text style={styles.buttonText}>Chapter Five</Text>
-      </TouchableOpacity>}
-      {progress > 3 && <TouchableOpacity style={styles.buttons}
-        onPress={() => navigation.navigate('six')}
-      >
-        <Text style={styles.buttonText}>Chapter Six</Text>
-      </TouchableOpacity>}
-      {progress > 3 && <TouchableOpacity style={styles.buttons}
-        onPress={() => navigation.navigate('seven')}
-      >
-        <Text style={styles.buttonText}>Chapter Seven</Text>
-      </TouchableOpacity>}
-      {progress > 3 && <TouchableOpacity style={styles.buttons}
-        onPress={() => navigation.navigate('eight')}
-      >
-        <Text style={styles.buttonText}>Chapter Eight</Text>
-      </TouchableOpacity>}
-      {progress > 3 && <TouchableOpacity style={styles.buttons}
-        onPress={() => navigation.navigate('nine')}
-      >
-        <Text style={styles.buttonText}>Chapter Nine</Text>
-      </TouchableOpacity>}
-      {progress > 3 && <TouchableOpacity style={styles.buttons}
-        onPress={() => navigation.navigate('ten')}
-      >
-        <Text style={styles.buttonText}>Chapter Ten</Text>
-      </TouchableOpacity>}
+        {progress >= 2 && <TouchableOpacity style={styles.buttons}
+          onPress={() => navigation.navigate('three')}
+        >
+          <Text style={styles.buttonText}>Chapter Three</Text>
+        </TouchableOpacity>}
+        {progress > 3 && <TouchableOpacity style={styles.buttons}
+          onPress={() => navigation.navigate('four')}
+        >
+          <Text style={styles.buttonText}>Chapter Four</Text>
+        </TouchableOpacity>}
+        {progress > 3 && <TouchableOpacity style={styles.buttons}
+          onPress={() => navigation.navigate('five')}
+        >
+          <Text style={styles.buttonText}>Chapter Five</Text>
+        </TouchableOpacity>}
+        {progress > 3 && <TouchableOpacity style={styles.buttons}
+          onPress={() => navigation.navigate('six')}
+        >
+          <Text style={styles.buttonText}>Chapter Six</Text>
+        </TouchableOpacity>}
+        {progress > 3 && <TouchableOpacity style={styles.buttons}
+          onPress={() => navigation.navigate('seven')}
+        >
+          <Text style={styles.buttonText}>Chapter Seven</Text>
+        </TouchableOpacity>}
+        {progress > 3 && <TouchableOpacity style={styles.buttons}
+          onPress={() => navigation.navigate('eight')}
+        >
+          <Text style={styles.buttonText}>Chapter Eight</Text>
+        </TouchableOpacity>}
+        {progress > 3 && <TouchableOpacity style={styles.buttons}
+          onPress={() => navigation.navigate('nine')}
+        >
+          <Text style={styles.buttonText}>Chapter Nine</Text>
+        </TouchableOpacity>}
+        {progress > 3 && <TouchableOpacity style={styles.buttons}
+          onPress={() => navigation.navigate('ten')}
+        >
+          <Text style={styles.buttonText}>Chapter Ten</Text>
+        </TouchableOpacity>}
       </ScrollView>
-    </View>
+    </ImageBackground>
   );
 }
 
@@ -122,13 +104,49 @@ export default function App() {
 
       }} >
         <Stack.Screen options={{
-         headerShown: false,
+          headerShown: false,
         }} name="Home" component={HomeScreen} />
 
-        <Stack.Screen name="one" component={ChapterOne} options={{title: "Gathering Army"}} />
+        <Stack.Screen options={{
+          headerShown: true,
+          headerTransparent: true,
+          title: "Chapter One",
+          headerTitleAlign: 'center',
+          headerTintColor: 'black',
+          headerTitleStyle: {
+            fontFamily: "serif",
 
-        <Stack.Screen name="two" component={ChapterTwo} />
-        <Stack.Screen name="three" component={ChapterThree} />
+          },
+        }}
+
+          name="one" component={ChapterOne} />
+
+        <Stack.Screen
+          options={{
+            headerShown: true,
+            headerTransparent: true,
+            title: "Chapter Two",
+            headerTitleAlign: 'center',
+            headerTintColor: 'black',
+            headerTitleStyle: {
+              fontFamily: "serif",
+
+            },
+          }}
+          name="two" component={ChapterTwo} />
+        <Stack.Screen
+          options={{
+            headerShown: true,
+            headerTransparent: true,
+            title: "Chapter Three",
+            headerTitleAlign: 'center',
+            headerTintColor: 'black',
+            headerTitleStyle: {
+              fontFamily: "serif",
+
+            },
+          }}
+          name="three" component={ChapterThree} />
         <Stack.Screen name="four" component={ChapterFour} />
         <Stack.Screen name="five" component={ChapterFive} />
         <Stack.Screen name="six" component={ChapterSix} />
@@ -142,7 +160,7 @@ export default function App() {
 
 
 
-      <StatusBar hidden/>
+      <StatusBar hidden />
     </NavigationContainer>
   );
 }
@@ -154,22 +172,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  buttons:{
-    alignSelf:'center',
-    backgroundColor:"#87592a",
-    width:"80%",
-    borderWidth: 3, 
-    borderColor:  '#f1c232',
-    borderBottomStartRadius:10,
-    borderTopEndRadius:10,
-    margin:5,
-    boarderStyle:"double",
-    alignItems:"center",
+  buttons: {
+    alignSelf: 'center',
+    backgroundColor: "#87592a",
+    width: "80%",
+    borderWidth: 3,
+    borderColor: '#f1c232',
+    borderBottomStartRadius: 10,
+    borderTopEndRadius: 10,
+    margin: 5,
+    boarderStyle: "double",
+    alignItems: "center",
   },
-  buttonText:{
-    padding:8,
-    fontFamily:"sans-serif-condensed",
-    fontSize:20,
+  buttonText: {
+    padding: 8,
+    fontFamily: "sans-serif-condensed",
+    fontSize: 20,
 
   }
 });

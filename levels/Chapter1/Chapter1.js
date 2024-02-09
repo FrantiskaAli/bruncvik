@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
 
-export default function ChapterOneGame({victory}) {
+export default function ChapterOneGame({navigation}) {
 //raising an Army
     const [game, setGame] = useState({
         "1a": false,
@@ -29,7 +29,7 @@ export default function ChapterOneGame({victory}) {
         if (allValuesTrue) {
             setWin(true)
             setTimeout(() => {
-                victory(1,"two")
+                navigation.navigate("two")
               }, 1000);
         } 
     },[game])
@@ -101,26 +101,26 @@ const handleClick = (field)=>{
 
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>chapter one</Text>
+        <ImageBackground source={require("../../assets/gameOnebg.jpg")} style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} resizeMode='cover'>
+            <Text style={{paddingBottom:40,fontSize:20,fontFamily:"serif",textAlign:"center", fontWeight:"bold"}}>Change the villagers to an army</Text>
             <View style={styles.mainContainer}>
                 <View style={styles.line}>
-                    <TouchableOpacity onPress={()=>handleClick("1a")}><ImageBackground source={game["1a"] ? require("../../assets/images/soldier.png"):  require("../../assets/images/villager.png")} style={game["1a"] ? styles.opened : styles.closed}/></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>handleClick("1a")}><ImageBackground source={game["1a"] ? require("../../assets/images/soldier2.png"):  require("../../assets/images/villager2.png")} style={game["1a"] ? styles.opened : styles.closed}/></TouchableOpacity>
                     <TouchableOpacity onPress={()=>handleClick("1b")}><ImageBackground source={game["1b"] ? require("../../assets/images/soldier.png"):  require("../../assets/images/villager.png")} style={game["1b"] ? styles.opened : styles.closed}/></TouchableOpacity>
                     <TouchableOpacity onPress={()=>handleClick("1c")}><ImageBackground source={game["1c"] ? require("../../assets/images/soldier.png"):  require("../../assets/images/villager.png")} style={game["1c"] ? styles.opened : styles.closed}/></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>handleClick("1d")}><ImageBackground source={game["1d"] ? require("../../assets/images/soldier.png"):  require("../../assets/images/villager.png")} style={game["1d"] ? styles.opened : styles.closed}/></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>handleClick("1d")}><ImageBackground source={game["1d"] ? require("../../assets/images/soldier2.png"):  require("../../assets/images/villager2.png")} style={game["1d"] ? styles.opened : styles.closed}/></TouchableOpacity>
                 </View>
                 <View style={styles.line}>
-                    <TouchableOpacity onPress={()=>handleClick("2a")}><ImageBackground  source={game["2a"] ? require("../../assets/images/soldier.png"):  require("../../assets/images/villager.png")} style={game["2a"] ? styles.opened : styles.closed}/></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>handleClick("2a")}><ImageBackground  source={game["2a"] ? require("../../assets/images/soldier2.png"):  require("../../assets/images/villager2.png")} style={game["2a"] ? styles.opened : styles.closed}/></TouchableOpacity>
                     <TouchableOpacity onPress={()=>handleClick("2b")}><ImageBackground source={game["2b"] ? require("../../assets/images/soldier.png"):  require("../../assets/images/villager.png")} style={game["2b"] ? styles.opened : styles.closed}/></TouchableOpacity>
                     <TouchableOpacity onPress={()=>handleClick("2c")}><ImageBackground source={game["2c"] ? require("../../assets/images/soldier.png"):  require("../../assets/images/villager.png")} style={game["2c"] ? styles.opened : styles.closed}/></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>handleClick("2d")}><ImageBackground source={game["2d"] ? require("../../assets/images/soldier.png"):  require("../../assets/images/villager.png")} style={game["2d"] ? styles.opened : styles.closed}/></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>handleClick("2d")}><ImageBackground source={game["2d"] ? require("../../assets/images/soldier2.png"):  require("../../assets/images/villager2.png")} style={game["2d"] ? styles.opened : styles.closed}/></TouchableOpacity>
                 </View>
                 <View style={styles.line}>
-                    <TouchableOpacity onPress={()=>handleClick("3a")}><ImageBackground source={game["3a"] ? require("../../assets/images/soldier.png"):  require("../../assets/images/villager.png")} style={game["3a"] ? styles.opened : styles.closed}/></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>handleClick("3b")}><ImageBackground source={game["3b"] ? require("../../assets/images/soldier.png"):  require("../../assets/images/villager.png")} style={game["3b"] ? styles.opened : styles.closed}/></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>handleClick("3c")}><ImageBackground source={game["3c"] ? require("../../assets/images/soldier.png"):  require("../../assets/images/villager.png")} style={game["3c"] ? styles.opened : styles.closed}/></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>handleClick("3d")}><ImageBackground source={game["3d"] ? require("../../assets/images/soldier.png"):  require("../../assets/images/villager.png")} style={game["3d"] ? styles.opened : styles.closed}/></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>handleClick("3a")}><ImageBackground source={game["3a"] ? require("../../assets/images/soldier2.png"):  require("../../assets/images/villager2.png")} style={game["3a"] ? styles.opened : styles.closed}/></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>handleClick("3b")}><ImageBackground source={game["3b"] ? require("../../assets/images/soldier2.png"):  require("../../assets/images/villager2.png")} style={game["3b"] ? styles.opened : styles.closed}/></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>handleClick("3c")}><ImageBackground source={game["3c"] ? require("../../assets/images/soldier2.png"):  require("../../assets/images/villager2.png")} style={game["3c"] ? styles.opened : styles.closed}/></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>handleClick("3d")}><ImageBackground source={game["3d"] ? require("../../assets/images/soldier2.png"):  require("../../assets/images/villager2.png")} style={game["3d"] ? styles.opened : styles.closed}/></TouchableOpacity>
                 </View>
                 <View style={styles.line}>
                     <TouchableOpacity onPress={()=>handleClick("4a")}><ImageBackground source={game["4a"] ? require("../../assets/images/soldier.png"):  require("../../assets/images/villager.png")} style={game["4a"] ? styles.opened : styles.closed}/></TouchableOpacity>
@@ -134,15 +134,14 @@ const handleClick = (field)=>{
             {win && <View style={{position:"absolute", width:"100%",height:"100%",justifyContent:"center",alignItems:"center"}}>
                 <Text style={{backgroundColor:"brown",color:"yellow",fontFamily:"serif", fontSize:50, fontWeight:700}}>Army gathered!</Text>
                 </View>}
-        </View>
+        </ImageBackground>
     );
 }
 
 
 const styles = StyleSheet.create({
     mainContainer: {
-        height: "50vh",
-        backgroundColor: '#fff',
+        height: "60vh",
         alignItems: 'center',
         justifyContent: 'center',
         border: "2px solid black",
@@ -150,22 +149,16 @@ const styles = StyleSheet.create({
     line: {
         flexDirection: "row",
     },
-    container: {
-        fontSize: 50,
-        fontFamily: ['serif'],
-        fontWeight: "bold",
-        border: "2px solid black",
-    },
     closed: {
-        height: 70,
-        width: 70,
+        height: 80,
+        width: 80,
         backgroundColor: "red",
         margin: 8,
 
     },
     opened: {
-        height: 70,
-        width: 70,
+        height: 85,
+        width: 85,
         backgroundColor: "blue",
         margin: 8,
     }

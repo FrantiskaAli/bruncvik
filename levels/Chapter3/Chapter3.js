@@ -1,5 +1,5 @@
 
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
 import { useState, useEffect } from 'react';
 
 
@@ -35,7 +35,7 @@ export default function ChapterThreeGame() {
         const sailorsBoat = [];
         const sailorsShore = [];
 
-//this loop sorts out where sailors are standing and if theyre on the raft theyll be assigned based on raft position
+        //this loop sorts out where sailors are standing and if theyre on the raft theyll be assigned based on raft position
         for (const key in position.sailors) {
             if (position.sailors[key] === 3) {
                 sailorsBoat.push("sailor")
@@ -44,10 +44,10 @@ export default function ChapterThreeGame() {
             } else if (position.sailors[key] === 2) {
                 raft.position ? sailorsShore.push("sailor") : sailorsBoat.push("soldier")
 
-                
+
             }
         };
-  //this loop does the same for soldiers
+        //this loop does the same for soldiers
         for (const key in position.soldiers) {
             if (position.soldiers[key] === 3) {
                 soldiersBoat.push("soldier")
@@ -61,7 +61,7 @@ export default function ChapterThreeGame() {
         }
         console.log("soldiersboat:", soldiersBoat, "sshore:", soldiersShore, "namorniciBoat:", sailorsBoat, "namorniciShore:", sailorsShore)
 
-//these are conditions to loose the game
+        //these are conditions to loose the game
         if (soldiersBoat.length < sailorsBoat.length && soldiersBoat.length >= 1) {
             console.log(soldiersBoat, sailorsBoat, "vice namorniku na lodi")
             alert("lost");
@@ -82,7 +82,7 @@ export default function ChapterThreeGame() {
                 position: true
             });
         }
-//another condition to loose the game (need to check tomorrow if ia can squish them together with ||)
+        //another condition to loose the game (need to check tomorrow if ia can squish them together with ||)
         if (soldiersShore.length < sailorsShore.length && soldiersShore.length >= 1) {
             console.log(soldiersBoat, sailorsBoat, "vicer Namorniku na brehu")
             alert("lost")
@@ -104,7 +104,7 @@ export default function ChapterThreeGame() {
             });
         }
         //condition of winnig
-        if (soldiersBoat.length === 3 && sailorsShore.length ===3) {
+        if (soldiersBoat.length === 3 && sailorsShore.length === 3) {
             alert("you won")
         }
     };
@@ -139,8 +139,8 @@ export default function ChapterThreeGame() {
 
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>chapter Two</Text>
+        <ImageBackground style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} source={require("../../assets/images/water.jpg")}>
+
             <View style={styles.ship}>
                 {pos.sailors.first === 3 && <TouchableOpacity onPress={() => handleClickPerson("sailors", "first", false)} ><View style={styles.seaman} ></View></TouchableOpacity>}
                 {pos.sailors.second === 3 && <TouchableOpacity onPress={() => handleClickPerson("sailors", "second", false)} ><View style={styles.seaman} ></View></TouchableOpacity>}
@@ -151,7 +151,7 @@ export default function ChapterThreeGame() {
                 {pos.soldiers.third === 3 && <TouchableOpacity onPress={() => handleClickPerson("soldiers", "third", false)} ><View style={styles.soldier} ></View></TouchableOpacity>}
             </View>
 
-            <View style={styles.water}>
+            <View resizeMode="cover" style={styles.water}>
 
                 <View style={raft.position ? styles.raft : styles.raftUp}>
                     {pos.sailors.first === 2 && <TouchableOpacity onPress={() => handleClickPersonRaft("sailors", "first")} ><View style={styles.seaman} ></View></TouchableOpacity>}
@@ -161,22 +161,28 @@ export default function ChapterThreeGame() {
                     {pos.soldiers.first === 2 && <TouchableOpacity onPress={() => handleClickPersonRaft("soldiers", "first")} ><View style={styles.soldier} ></View></TouchableOpacity>}
                     {pos.soldiers.second === 2 && <TouchableOpacity onPress={() => handleClickPersonRaft("soldiers", "second")} ><View style={styles.soldier} ></View></TouchableOpacity>}
                     {pos.soldiers.third === 2 && <TouchableOpacity onPress={() => handleClickPersonRaft("soldiers", "third")} ><View style={styles.soldier} ></View></TouchableOpacity>}
-                    <Button title="move" onPress={() => clickRaft()} />
+
                 </View>
 
             </View>
-            <View style={styles.shore}>
-                {pos.sailors.first === 1 && <TouchableOpacity onPress={() => handleClickPerson("sailors", "first", true)} ><View style={styles.seaman} ></View></TouchableOpacity>}
-                {pos.sailors.second === 1 && <TouchableOpacity onPress={() => handleClickPerson("sailors", "second", true)} ><View style={styles.seaman} ></View></TouchableOpacity>}
-                {pos.sailors.third === 1 && <TouchableOpacity onPress={() => handleClickPerson("sailors", "third", true)} ><View style={styles.seaman} ></View></TouchableOpacity>}
 
-                {pos.soldiers.first === 1 && <TouchableOpacity onPress={() => handleClickPerson("soldiers", "first", true)} ><View style={styles.soldier} ></View></TouchableOpacity>}
-                {pos.soldiers.second === 1 && <TouchableOpacity onPress={() => handleClickPerson("soldiers", "second", true)} ><View style={styles.soldier} ></View></TouchableOpacity>}
-                {pos.soldiers.third === 1 && <TouchableOpacity onPress={() => handleClickPerson("soldiers", "third", true)} ><View style={styles.soldier} ></View></TouchableOpacity>}
-            </View>
+            <ImageBackground style={styles.shore} source={require("../../assets/images/boat-land.png")} resizeMode='cover'>
+                {pos.sailors.first === 1 && <TouchableOpacity onPress={() => handleClickPerson("sailors", "first", true)} style={{width:"auto",height:"50"}}><View style={styles.seaman} ></View></TouchableOpacity>}
+                {pos.sailors.second === 1 && <TouchableOpacity onPress={() => handleClickPerson("sailors", "second", true)} style={{width:"auto",height:"50"}}><View style={styles.seaman} ></View></TouchableOpacity>}
+                {pos.sailors.third === 1 && <TouchableOpacity onPress={() => handleClickPerson("sailors", "third", true)} style={{width:"auto",height:"f50"}}><View style={styles.seaman} ></View></TouchableOpacity>}
 
+                {pos.soldiers.first === 1 && <TouchableOpacity onPress={() => handleClickPerson("soldiers", "first", true)} style={{width:"auto",height:"50"}}><View style={styles.soldier} ></View></TouchableOpacity>}
+                {pos.soldiers.second === 1 && <TouchableOpacity onPress={() => handleClickPerson("soldiers", "second", true)} style={{width:"auto",height:"50"}}><View style={styles.soldier} ></View></TouchableOpacity>}
+                {pos.soldiers.third === 1 && <TouchableOpacity onPress={() => handleClickPerson("soldiers", "third", true)} style={{width:"auto",height:"50"}}><View style={styles.soldier} ></View></TouchableOpacity>}
 
-        </View>
+            </ImageBackground>
+            <TouchableOpacity onPress={() => clickRaft()} style={{ position: 'absolute', bottom: 30, left:"45%", }}>
+
+                <Text style={{ fontSize: 50, }}>&#8597;
+                </Text>
+            </TouchableOpacity>
+
+        </ImageBackground>
     );
 }
 
@@ -191,7 +197,7 @@ const styles = StyleSheet.create({
     },
     ship: {
         width: 150,
-        height: 100,
+        marginTop:40,
         backgroundColor: 'brown',
         flexDirection: "row",
         flex: 1,
@@ -199,8 +205,7 @@ const styles = StyleSheet.create({
     },
     water: {
         width: "100%",
-        height: 30,
-        backgroundColor: 'blue',
+        position: "relative",
         flexDirection: "row",
         flex: 1,
 
@@ -213,9 +218,8 @@ const styles = StyleSheet.create({
     },
     shore: {
         flex: 1,
-        height: 150,
+
         width: "100%",
-        backgroundColor: 'green',
         flexDirection: "row",
     },
     soldier: {
@@ -225,16 +229,21 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     raftUp: {
+        position: 'absolute',
         height: 50,
         width: 200,
+        left: "30%",
         backgroundColor: "purple",
         flexDirection: "row",
+        top: 0,
     },
     raft: {
+        position: "absolute",
+        left: "30%",
         height: 50,
         width: 200,
         backgroundColor: "purple",
-        marginTop: 40,
+        bottom: 0,
         flexDirection: "row",
     },
 });
